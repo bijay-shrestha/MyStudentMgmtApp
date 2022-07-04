@@ -27,8 +27,8 @@ s1: { studentId:1, studentNumber: 000-61-0001, firstName:Anna, middleName: Lynn,
 
 ## Task 2:
 
-1. Add a new entity named, `Transcript (transcriptId: primaryKey, degreeTitle)` to your solution above. Determine the relationship between `Student` entity and `Transcript` enity. And then implement JPA code for mapping and persisting/saving a student-and-transcript object data. `Sample data: Transcript {1, "BS Computer Science"}`
+**1.** Add a new entity named, `Transcript (transcriptId: primaryKey, degreeTitle)` to your solution above. Determine the relationship between `Student` entity and `Transcript` enity. And then implement JPA code for mapping and persisting/saving a student-and-transcript object data. `Sample data: Transcript {1, "BS Computer Science"}`
 
-2. Add a new entity named, `Classroom (classroomId: primaryKey, buildingName, roomNumber)` to your solution above. Determine the relationship between `Student` entity and `Classroom` entity. And then implement JPA code for mapping and persisting/saving a student-and-classroom object data. `Sample data: Classroom {1, "McLaughlin building", "M105"}`
+**2.** Add a new entity named, `Classroom (classroomId: primaryKey, buildingName, roomNumber)` to your solution above. Determine the relationship between `Student` entity and `Classroom` entity. And then implement JPA code for mapping and persisting/saving a student-and-classroom object data. `Sample data: Classroom {1, "McLaughlin building", "M105"}`
 
 //-- Enjoy --//

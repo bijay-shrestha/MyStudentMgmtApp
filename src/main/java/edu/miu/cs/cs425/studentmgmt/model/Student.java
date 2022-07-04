@@ -1,19 +1,20 @@
 package edu.miu.cs.cs425.studentmgmt.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author bijayshrestha on 7/4/22
  * @project MyStudentMgmtApp
  */
 @Entity
-public class Student {
+public class Student implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
     @Column(nullable = false)
     private String studentNumber;
@@ -26,6 +27,10 @@ public class Student {
     @Column(nullable = true)
     private double cgpa;
     private LocalDate dateOfEnrollment;
+
+    @OneToMany
+    @JoinColumn(name = "studentId")
+    private Set<Transcript> transcripts;
 
     public Student() {
     }
@@ -95,5 +100,26 @@ public class Student {
 
     public void setDateOfEnrollment(LocalDate dateOfEnrollment) {
         this.dateOfEnrollment = dateOfEnrollment;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", studentNumber='" + studentNumber + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", cgpa=" + cgpa +
+                ", dateOfEnrollment=" + dateOfEnrollment +
+                '}';
+    }
+
+    public Set<Transcript> getTranscripts() {
+        return transcripts;
+    }
+
+    public void setTranscripts(Set<Transcript> transcripts) {
+        this.transcripts = transcripts;
     }
 }
