@@ -30,6 +30,17 @@ public class Student {
     public Student() {
     }
 
+    public Student(String studentNumber, String firstName,
+                   String middleName, String lastName,
+                   double cgpa, LocalDate dateOfEnrollment) {
+        this.studentNumber = studentNumber;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.cgpa = cgpa;
+        this.dateOfEnrollment = dateOfEnrollment;
+    }
+
     public Long getStudentId() {
         return studentId;
     }
