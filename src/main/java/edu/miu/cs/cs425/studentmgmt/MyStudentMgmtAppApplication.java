@@ -38,50 +38,42 @@ public class MyStudentMgmtAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        Classroom m115 = new Classroom("McLaughlin Building", "M115");
-        Classroom m116 = new Classroom("McLaughlin Building", "M116");
-        classroomRepository.saveAll(Set.of(m115, m116));
-
-        Student anna = new Student(
-                "000-61-0001",
-                "Anna",
-                "Lynn",
-                "Smith",
-                3.45,
-                LocalDate.of(2019, 5, 24)
-        );
-        Student bell = new Student(
-                "000-61-0002",
-                "Bell",
-                "Lynn",
-                "Smith",
-                4,
-                LocalDate.of(2019, 5, 24)
-
-        );
+        saveClassroom();
+        Student anna = getStudent("000-61-0001", "Anna", "Lynn",
+                "Smith", 3.45, LocalDate.of(2019, 5, 24));
+        Student bell = getStudent("000-61-0002", "Bell", "",
+                "Hadid", 4, LocalDate.of(1990, 4, 20));
         saveStudent(anna);
         saveStudent(bell);
+        saveTranscripts(anna, bell);
+    }
 
+    private void saveTranscripts(Student anna, Student bell) {
         Transcript bsComputerScienceProgramAnna = new Transcript("BS Computer Science", anna);
         Transcript msComputerScienceProgramAnna = new Transcript("MS Computer Science", anna);
         Transcript msComputerScienceProgramBell = new Transcript("MS Computer Science", bell);
         transcriptRepository.saveAll(List.of(bsComputerScienceProgramAnna, msComputerScienceProgramAnna));
         transcriptRepository.save(msComputerScienceProgramBell);
+    }
 
+    private Student getStudent(String studentNumber, String firstName, String middleName, String lastName, double cgpa, LocalDate birthDate) {
+        return new Student(
+                studentNumber,
+                firstName,
+                middleName,
+                lastName,
+                cgpa,
+                birthDate
+        );
+    }
 
+    private void saveClassroom() {
+        Classroom m115 = new Classroom("McLaughlin Building", "M115");
+        Classroom m116 = new Classroom("McLaughlin Building", "M116");
+        classroomRepository.saveAll(Set.of(m115, m116));
     }
 
     void saveStudent(Student student) {
         studentRepository.save(student);
-    }
-
-
-
-    public static <T> Set<T> convertListToSet(List<T> list) {
-        Set<T> set = new HashSet<>();
-        for (T t : list)
-            set.add(t);
-        return set;
     }
 }
