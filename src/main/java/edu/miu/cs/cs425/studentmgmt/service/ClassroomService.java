@@ -11,4 +11,6 @@ import java.util.Set;
  */
 public interface ClassroomService {
     List<Classroom> saveAllClassrooms(Set<Classroom> classrooms);
+
+    void saveClassroom(Classroom classroom);
 }

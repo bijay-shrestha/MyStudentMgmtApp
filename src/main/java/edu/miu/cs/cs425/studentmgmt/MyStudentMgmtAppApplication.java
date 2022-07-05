@@ -54,18 +54,19 @@ public class MyStudentMgmtAppApplication implements CommandLineRunner {
         bell.getClassrooms().add(m215);
         bell.getClassrooms().add(m216);
         bell.getClassrooms().add(m217);
+        saveStudent(anna);
+        saveStudent(bell);
 
-        //add student reference to classroom (This doesn't work, why??)
+        //WEIRD:: add student reference to classroom (This doesn't work, why??)
 //        m115.getStudents().add(anna);
 //        m116.getStudents().add(anna);
 //        m117.getStudents().add(anna);
 //        m215.getStudents().add(bell);
 //        m216.getStudents().add(bell);
 //        m217.getStudents().add(bell);
+//        saveClassrooms(Set.of(m115, m116, m117, m215, m216, m217));
 
 
-        saveStudent(anna);
-        saveStudent(bell);
         saveTranscripts(anna, bell);
     }
 
@@ -91,6 +92,14 @@ public class MyStudentMgmtAppApplication implements CommandLineRunner {
 
     void saveStudent(Student student) {
         studentService.saveStudent(student);
+    }
+
+    void saveClassroom(Classroom classroom){
+        classroomService.saveClassroom(classroom);
+    }
+
+    List<Classroom> saveClassrooms(Set<Classroom> classrooms){
+       return classroomService.saveAllClassrooms(classrooms);
     }
 
     public static <T> Set<T> convertListToSet(List<T> list) {

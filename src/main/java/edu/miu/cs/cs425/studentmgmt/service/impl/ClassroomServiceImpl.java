@@ -24,4 +24,9 @@ public class ClassroomServiceImpl implements ClassroomService {
     public List<Classroom> saveAllClassrooms(Set<Classroom> classrooms) {
         return classroomRepository.saveAll(classrooms);
     }
+
+    @Override
+    public void saveClassroom(Classroom classroom) {
+        classroomRepository.save(classroom);
+    }
 }

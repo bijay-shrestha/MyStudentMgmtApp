@@ -12,7 +12,6 @@ import java.util.Set;
  * @project MyStudentMgmtApp
  */
 @Entity
-@Builder
 public class Classroom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +20,7 @@ public class Classroom implements Serializable {
     private String buildingName;
     private String roomNumber;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "classrooms")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "classrooms")
     private Set<Student> students = new HashSet<>();
 
     public Classroom() {
