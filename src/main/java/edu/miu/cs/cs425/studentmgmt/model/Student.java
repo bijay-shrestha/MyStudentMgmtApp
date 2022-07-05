@@ -28,9 +28,15 @@ public class Student implements Serializable {
     private double cgpa;
     private LocalDate dateOfEnrollment;
 
-    @OneToMany
-    @JoinColumn(name = "studentId")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private Set<Transcript> transcripts;
+
+    @ManyToMany
+    @JoinTable(
+            name="student_classroom",
+            joinColumns={@JoinColumn(name="student_id", referencedColumnName="studentId")},
+            inverseJoinColumns={@JoinColumn(name="classroom_id", referencedColumnName="classroomId")})
+    private Set<Classroom> classrooms;
 
     public Student() {
     }
@@ -44,6 +50,26 @@ public class Student implements Serializable {
         this.lastName = lastName;
         this.cgpa = cgpa;
         this.dateOfEnrollment = dateOfEnrollment;
+    }
+
+    public Student(String studentNumber, String firstName, String middleName,
+                   String lastName, double cgpa, LocalDate dateOfEnrollment,
+                   Set<Transcript> transcripts) {
+        this.studentNumber = studentNumber;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.cgpa = cgpa;
+        this.dateOfEnrollment = dateOfEnrollment;
+        this.transcripts = transcripts;
+    }
+
+    public Set<Classroom> getClassrooms() {
+        return classrooms;
+    }
+
+    public void setClassrooms(Set<Classroom> classrooms) {
+        this.classrooms = classrooms;
     }
 
     public Long getStudentId() {

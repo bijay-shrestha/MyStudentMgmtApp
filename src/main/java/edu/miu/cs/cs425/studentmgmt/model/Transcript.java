@@ -15,11 +15,20 @@ public class Transcript implements Serializable {
 
     private String degreeTitle;
 
+    @ManyToOne
+    @JoinColumn(name = "studentId")
+    private Student student;
+
     public Transcript() {
     }
 
     public Transcript(String degreeTitle) {
         this.degreeTitle = degreeTitle;
+    }
+
+    public Transcript(String degreeTitle, Student student) {
+        this.degreeTitle = degreeTitle;
+        this.student = student;
     }
 
     public int getTranscriptId() {
@@ -36,6 +45,14 @@ public class Transcript implements Serializable {
 
     public void setDegreeTitle(String degreeTitle) {
         this.degreeTitle = degreeTitle;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     @Override
