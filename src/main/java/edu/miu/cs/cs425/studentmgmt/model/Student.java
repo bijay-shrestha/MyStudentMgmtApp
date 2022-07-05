@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -29,14 +30,14 @@ public class Student implements Serializable {
     private LocalDate dateOfEnrollment;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private Set<Transcript> transcripts;
+    private Set<Transcript> transcripts = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(
             name="student_classroom",
-            joinColumns={@JoinColumn(name="student_id", referencedColumnName="studentId")},
-            inverseJoinColumns={@JoinColumn(name="classroom_id", referencedColumnName="classroomId")})
-    private Set<Classroom> classrooms;
+            joinColumns={@JoinColumn(name="student_id")},
+            inverseJoinColumns={@JoinColumn(name="classroom_id")})
+    private Set<Classroom> classrooms = new HashSet<>();
 
     public Student() {
     }
@@ -62,6 +63,18 @@ public class Student implements Serializable {
         this.cgpa = cgpa;
         this.dateOfEnrollment = dateOfEnrollment;
         this.transcripts = transcripts;
+    }
+
+    public Student(String studentNumber, String firstName, String middleName,
+                   String lastName, double cgpa, LocalDate dateOfEnrollment,
+                   Set<Transcript> transcripts, Set<Classroom> classrooms) {
+        this.studentNumber = studentNumber;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.cgpa = cgpa;
+        this.dateOfEnrollment = dateOfEnrollment;
+        this.classrooms = classrooms;
     }
 
     public Set<Classroom> getClassrooms() {

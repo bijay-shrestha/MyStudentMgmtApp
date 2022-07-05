@@ -1,7 +1,10 @@
 package edu.miu.cs.cs425.studentmgmt.model;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -9,6 +12,7 @@ import java.util.Set;
  * @project MyStudentMgmtApp
  */
 @Entity
+@Builder
 public class Classroom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +21,8 @@ public class Classroom implements Serializable {
     private String buildingName;
     private String roomNumber;
 
-    @ManyToMany
-    private Set<Student> students;
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "classrooms")
+    private Set<Student> students = new HashSet<>();
 
     public Classroom() {
     }

@@ -1,6 +1,8 @@
 package edu.miu.cs.cs425.studentmgmt.service;
 
 import edu.miu.cs.cs425.studentmgmt.model.Classroom;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -8,5 +10,5 @@ import java.util.Set;
  * @project MyStudentMgmtApp
  */
 public interface ClassroomService {
-    void saveAllClassrooms(Set<Classroom> classrooms);
+    List<Classroom> saveAllClassrooms(Set<Classroom> classrooms);
 }

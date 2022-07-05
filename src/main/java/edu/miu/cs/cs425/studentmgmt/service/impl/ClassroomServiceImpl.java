@@ -4,6 +4,8 @@ import edu.miu.cs.cs425.studentmgmt.model.Classroom;
 import edu.miu.cs.cs425.studentmgmt.repository.ClassroomRepository;
 import edu.miu.cs.cs425.studentmgmt.service.ClassroomService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,7 +21,7 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
     @Override
-    public void saveAllClassrooms(Set<Classroom> classrooms) {
-        classroomRepository.saveAll(classrooms);
+    public List<Classroom> saveAllClassrooms(Set<Classroom> classrooms) {
+        return classroomRepository.saveAll(classrooms);
     }
 }
