@@ -3,33 +3,27 @@ package edu.miu.cs.cs425.studentmgmt;
 import edu.miu.cs.cs425.studentmgmt.model.Classroom;
 import edu.miu.cs.cs425.studentmgmt.model.Student;
 import edu.miu.cs.cs425.studentmgmt.model.Transcript;
-import edu.miu.cs.cs425.studentmgmt.repository.ClassroomRepository;
-import edu.miu.cs.cs425.studentmgmt.repository.StudentRepository;
-import edu.miu.cs.cs425.studentmgmt.repository.TranscriptRepository;
+import edu.miu.cs.cs425.studentmgmt.service.ClassroomService;
+import edu.miu.cs.cs425.studentmgmt.service.StudentService;
+import edu.miu.cs.cs425.studentmgmt.service.TranscriptService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import javax.annotation.Resource;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
-import static java.lang.System.out;
 
 @SpringBootApplication
 public class MyStudentMgmtAppApplication implements CommandLineRunner {
 
     @Resource
-    private StudentRepository studentRepository;
+    private StudentService studentService;
 
     @Resource
-    private TranscriptRepository transcriptRepository;
+    private TranscriptService transcriptService;
 
     @Resource
-    private ClassroomRepository classroomRepository;
+    private ClassroomService classroomService;
 
 
     public static void main(String[] args) {
@@ -52,8 +46,8 @@ public class MyStudentMgmtAppApplication implements CommandLineRunner {
         Transcript bsComputerScienceProgramAnna = new Transcript("BS Computer Science", anna);
         Transcript msComputerScienceProgramAnna = new Transcript("MS Computer Science", anna);
         Transcript msComputerScienceProgramBell = new Transcript("MS Computer Science", bell);
-        transcriptRepository.saveAll(List.of(bsComputerScienceProgramAnna, msComputerScienceProgramAnna));
-        transcriptRepository.save(msComputerScienceProgramBell);
+        transcriptService.saveAllTranscripts(Set.of(bsComputerScienceProgramAnna, msComputerScienceProgramAnna));
+        transcriptService.saveTranscript(msComputerScienceProgramBell);
     }
 
     private Student getStudent(String studentNumber, String firstName, String middleName, String lastName, double cgpa, LocalDate birthDate) {
@@ -70,10 +64,10 @@ public class MyStudentMgmtAppApplication implements CommandLineRunner {
     private void saveClassroom() {
         Classroom m115 = new Classroom("McLaughlin Building", "M115");
         Classroom m116 = new Classroom("McLaughlin Building", "M116");
-        classroomRepository.saveAll(Set.of(m115, m116));
+        classroomService.saveAllClassrooms(Set.of(m115, m116));
     }
 
     void saveStudent(Student student) {
-        studentRepository.save(student);
+        studentService.saveStudent(student);
     }
 }

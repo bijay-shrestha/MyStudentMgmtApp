@@ -1,6 +1,7 @@
 package edu.miu.cs.cs425.studentmgmt.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Student implements Serializable {
     @Column(nullable = true)
     private String middleName;
     @Column(nullable = false)
+    @NotBlank(message = "Lastname cannot be blank")
     private String lastName;
     @Column(nullable = true)
     private double cgpa;
