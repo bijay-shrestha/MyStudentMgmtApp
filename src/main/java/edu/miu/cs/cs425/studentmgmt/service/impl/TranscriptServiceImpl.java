@@ -4,6 +4,7 @@ import edu.miu.cs.cs425.studentmgmt.model.Transcript;
 import edu.miu.cs.cs425.studentmgmt.repository.TranscriptRepository;
 import edu.miu.cs.cs425.studentmgmt.service.TranscriptService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Set;
 
 /**
@@ -11,6 +12,7 @@ import java.util.Set;
  * @project MyStudentMgmtApp
  */
 @Service
+@Transactional
 public class TranscriptServiceImpl implements TranscriptService {
 
     private final TranscriptRepository transcriptRepository;

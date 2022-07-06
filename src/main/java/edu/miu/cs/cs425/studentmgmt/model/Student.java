@@ -17,6 +17,7 @@ public class Student implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
     @Column(nullable = false)
+    @NotBlank
     private String studentNumber;
     @Column(nullable = false)
     private String firstName;

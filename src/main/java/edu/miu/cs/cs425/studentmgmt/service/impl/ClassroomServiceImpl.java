@@ -4,6 +4,7 @@ import edu.miu.cs.cs425.studentmgmt.model.Classroom;
 import edu.miu.cs.cs425.studentmgmt.repository.ClassroomRepository;
 import edu.miu.cs.cs425.studentmgmt.service.ClassroomService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ import java.util.Set;
  * @project MyStudentMgmtApp
  */
 @Service
+@Transactional
 public class ClassroomServiceImpl implements ClassroomService {
     private final ClassroomRepository classroomRepository;
 
